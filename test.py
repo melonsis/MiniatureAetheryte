@@ -3,7 +3,7 @@ from webdav4.client import Client
 import os
 import time
 from lib.file import MAR_Packing,MAR_Unpacking
-from lib.network import MAR_Client_Create, MAR_Client_List
+from lib.network import MAR_Client_Create, MAR_Client_List, MAR_Client_Scan
 
 #print("Connecting to WebDAV server...",end="")
 #mar_client = Client(base_url="https://dav.jianguoyun.com/dav/", auth=("tch1995@live.com", "adkc8sya3r7axfyg"))
@@ -16,12 +16,12 @@ game_path_fix = "/My Games/FINAL FANTASY XIV - A Realm Reborn/"
 user_prefix = "FFXIV_CHR"
 user_ID = "00438D8134B2E335"
 
-mygame_path = game_path+game_path_fix
-pbk_file = MAR_Packing(mygame_path,user_prefix,user_ID)
+#mygame_path = game_path+game_path_fix
+#pbk_file = MAR_Packing(mygame_path,user_prefix,user_ID)
 #MAR_Unpacking(mygame_path, mygame_path+"backup_1696671155_00438D8134B2E335.pbkp")
 mar_client = MAR_Client_Create("https://dav.jianguoyun.com/dav/", "tch1995@live.com", "adkc8sya3r7axfyg")
-mar_client.upload_file(from_path=pbk_file, to_path = "/MAR/"+pbk_file.split("/")[-1], overwrite = True)
-MAR_Client_List(mar_client, user_ID) 
+#mar_client.upload_file(from_path=pbk_file, to_path = "/MAR/"+pbk_file.split("/")[-1], overwrite = True)
+print(MAR_Client_Scan(mar_client)) 
 
 
 
