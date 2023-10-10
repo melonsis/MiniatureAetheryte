@@ -21,24 +21,24 @@ def MAR_Packing(mygame_path, user_prefix, user_ID):
         f.close()
     mar_zip_md5 = hashlib.md5(file_content).hexdigest()
     
-    pbk_file = mygame_path+'backup_'+backup_timepoint+'_'+user_ID+'.pbkp'
-    with open(pbk_file, 'wb+') as f:
+    pbkp_file = mygame_path+'backup_'+backup_timepoint+'_'+user_ID+'.pbkp'
+    with open(pbkp_file, 'wb+') as f:
         f.seek(0)
         f.write(backup_timepoint.encode('utf8'))
         f.write(user_ID.encode('utf8'))
         f.write(mar_zip_md5.encode('utf8'))
         f.write(file_content)
         f.close()
-    
-    return pbk_file
-def MAR_Unpacking(mygame_path, pbk_file):
-    with open(pbk_file,'rb+') as pbk_obj:
-        pbk_obj.seek(0)
-        backup_timepoint = pbk_obj.read(10).decode('utf8')
-        user_ID = pbk_obj.read(16).decode('utf8')
-        store_md5 = pbk_obj.read(32).decode('utf8')
-        file_content = pbk_obj.read()
-        pbk_obj.close()
+    return pbkp_file
+
+def MAR_Unpacking(mygame_path, pbkp_file):
+    with open(pbkp_file,'rb+') as pbkp_obj:
+        pbkp_obj.seek(0)
+        backup_timepoint = pbkp_obj.read(10).decode('utf8')
+        user_ID = pbkp_obj.read(16).decode('utf8')
+        store_md5 = pbkp_obj.read(32).decode('utf8')
+        file_content = pbkp_obj.read()
+        pbkp_obj.close()
 
     pbk_md5 = hashlib.md5(file_content).hexdigest()
     if pbk_md5 != store_md5:
