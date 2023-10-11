@@ -5,6 +5,7 @@ import time
 from lib.file import MAR_Packing,MAR_Unpacking
 from lib.network import MAR_Client_Create, MAR_Client_List, MAR_Client_Scan
 from lib.utility import MAR_Local_Scan
+from lib.config import MAR_Config_Loader
 
 #print("Connecting to WebDAV server...",end="")
 #mar_client = Client(base_url="https://dav.jianguoyun.com/dav/", auth=("tch1995@live.com", "adkc8sya3r7axfyg"))
@@ -12,8 +13,8 @@ from lib.utility import MAR_Local_Scan
 #print(client.ls(path='/MAR',detail=False))
 
 # Setting path
-game_path = "D:/Project/MAR/testdata"
-game_path_fix = "/My Games/FINAL FANTASY XIV - A Realm Reborn/"
+game_path = "D:/Project/MAR/testdata/"
+game_path_fix = "game/My Games/FINAL FANTASY XIV - A Realm Reborn/"
 user_prefix = "FFXIV_CHR"
 user_ID = "00438D8134B2E335"
 
@@ -23,7 +24,9 @@ user_ID = "00438D8134B2E335"
 #mar_client = MAR_Client_Create("https://dav.jianguoyun.com/dav/", "tch1995@live.com", "adkc8sya3r7axfyg")
 #mar_client.upload_file(from_path=pbk_file, to_path = "/MAR/"+pbk_file.split("/")[-1], overwrite = True)
 #print(MAR_Client_Scan(mar_client))
-print(MAR_Local_Scan(mygame_path="E:/Project/MiniatureAetheryte/testdata/My Games/FINAL FANTASY XIV - A Realm Reborn/"))
+#print(MAR_Local_Scan(mygame_path="E:/Project/MiniatureAetheryte/testdata/My Games/FINAL FANTASY XIV - A Realm Reborn/"))
+conf_dic = MAR_Config_Loader()
+print(conf_dic)
 
 
 
