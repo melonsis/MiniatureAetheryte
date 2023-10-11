@@ -15,10 +15,11 @@ def MAR_Client_List(mar_client, user_ID):
                 last_sync_time = int(sync_time)
             backup_count += 1
     last_sync_time_local = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(last_sync_time))
-    print("Listing backup information for user " + user_ID)
-    print("Total: "+str(backup_count))
-    print("Last: "+last_sync_time_local)
-    return 0
+    # print("Listing backup information for user " + user_ID)
+    # print("Total: "+str(backup_count))
+    # print("Last: "+last_sync_time_local)
+    return [last_sync_time, last_sync_time_local]
+
 def MAR_Client_Scan(mar_client):
     backup_list = mar_client.ls(path = "/MAR/", detail = False)
     last_sync_time = []
